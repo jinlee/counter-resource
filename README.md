@@ -81,6 +81,42 @@ If the counter is required in a downstream job, leave out the `inc`.
     - task:
       ... do something ...
 
+## Resource Configuration
+
+The following is an example resource configuration:
+
+    resources:
+    - name: counter
+      type: counter-resource
+      source:
+        bucket: 'test-bucket'
+        key: 'some_folder/counter/count'
+
+    resource_types:
+    - name: counter-resource
+      type: docker-image
+      source:
+        repository: jinlee/counter-resource
+
+## Required S3 Policy
+
+The resource requires just two s3 actions: `s3:GetObject` and `s3:PutObject`.
+
+The IAM Policy should look something like this:
+
+    {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Effect": "Allow",
+                "Action": [ "s3:GetObject" ]
+                "Resource": [
+                    "arn:aws:s3:::test-bucket/some_folder/counter/count"
+                ]
+            }
+        ]
+    }
+
 [semver]:  https://github.com/concourse/semver-resource
 [s3]:      https://github.com/concourse/s3-resource
 [boto3]:   https://boto3.readthedocs.io/en/latest/
