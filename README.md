@@ -109,7 +109,7 @@ The IAM Policy should look something like this:
         "Statement": [
             {
                 "Effect": "Allow",
-                "Action": [ "s3:GetObject" ]
+                "Action": [ "s3:GetObject", "s3:PutObject" ]
                 "Resource": [
                     "arn:aws:s3:::test-bucket/some_folder/counter/count"
                 ]
