@@ -1,3 +1,5 @@
+[![Docker Pulls](https://img.shields.io/docker/pulls/jinlee/counter-resource.svg)]()
+
 # A Simple Counter Resource for Concourse
 
 A simple incrementing counter to version [concourse][concourse] pipelines.
